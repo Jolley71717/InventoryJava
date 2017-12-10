@@ -1,0 +1,23 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <name>Maven Default Project</name>
+    <artifactId>InventoryAccess</artifactId>
+
+    <build>
+    <directory>target</directory>
+    <outputDirectory>target/classes</outputDirectory>
+    <finalName>${artifactId}-${version}</finalName>
+    <sourceDirectory>src/com/Jolley/java</sourceDirectory>
+    <scriptSourceDirectory>src/com/Jolley/scripts</scriptSourceDirectory>
+    <resources>
+        <resource>
+            <directory>src/com/Jolley/resources</directory>
+        </resource>
+    </resources>
+    </build>
+
+    <dependencies>
+
+    </dependencies>
+
+</project>
