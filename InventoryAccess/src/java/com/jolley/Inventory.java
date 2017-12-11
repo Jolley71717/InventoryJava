@@ -1,4 +1,6 @@
-package com.Jolley.java;
+package com.jolley;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 

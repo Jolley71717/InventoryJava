@@ -1,14 +1,28 @@
-package com.Jolley.java;
+package com.jolley;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Comparator;
 
-public class Item {
+public class Item{
+//    public class Item {
 
-    private  String description;
-    private Integer itemID;
-    private Integer quantity;
-    private Timestamp timestamp;
+    @JsonProperty("Description")public  String description;
+    @JsonProperty("ItemID") public Integer itemID;
+    @JsonProperty("Quantity") public Integer quantity;
+    @JsonProperty("timestamp") public Timestamp timestamp;
 
+//    public int compareTo(Item o) {
+//        Timestamp compareDate = ((Item) o).getTimestamp();
+//
+//        //descending order
+//        return compareDate - this.timestamp;
+//    }
+
+
+    public Item(){}
 
     public Item(String description, Integer itemID, Integer quantity, Timestamp timestamp){
     this.description = description;
@@ -49,8 +63,10 @@ public class Item {
         this.timestamp = timestamp;
     }
 
-
-
-
-
+//
+//    public int compareTo(Item o1, Item o2) {
+//        long t1 = o1.getTimestamp().getTime();
+//        long t2 = o2.getTimestamp().getTime();
+//        return t1 == t2 ? 0 : t1 < t2 ? -1 : 1;
+//    }
 }
