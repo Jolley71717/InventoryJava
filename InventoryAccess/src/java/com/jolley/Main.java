@@ -3,6 +3,8 @@ package com.jolley;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.tools.javac.jvm.Items;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -13,25 +15,43 @@ public class Main {
 
     public static void main(String[] args)  {
         String stringURL = "http://localhost:8080/output/YYVAOe8Qr8F4MreoQVYWUaqK6AA.json";
+            String jsonData ="";
+        try{
+             jsonData = readUrl(stringURL);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+        if (jsonData != ""){
+            List<Item> items = getItems(jsonData);
+            for (Item f : items){
+                System.out.println(f.description + " at time " + f.getTimestamp());
+            }
+        }
+
+
+    }
+
+    private static List<Item> getItems(String jsonInfo){
         ObjectMapper mapper = new ObjectMapper();
 
         try{
-            String jsonData = readUrl(stringURL);
+
             //System.out.println(jsonData);
 
             mapper.configure(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY,true);
 
-            List<Item> items = mapper.readValue(jsonData,new TypeReference<List<Item>>(){});
+            List<Item> items = mapper.readValue(jsonInfo,new TypeReference<List<Item>>(){});
             Collections.sort(items, new ItemComparator());
-            for (Item f : items){
-                System.out.println(f.description + " at time " + f.getTimestamp());
-            }
 
-            System.out.println(items);
+
+            //System.out.println(items);
+            return items;
         } catch (Exception e){
             System.out.println(e);
         }
 
+        return null;
 
     }
 

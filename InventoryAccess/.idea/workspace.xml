@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4eeb4695-4b79-4ad3-b630-7833e7a1fab2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_7_0.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_7_5.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_7_5.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/java/com/jolley/Item.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/java/com/jolley/ItemComparator.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/InventoryAccess.iml" afterPath="$PROJECT_DIR$/InventoryAccess.iml" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/com/Jolley/java/Inventory.java" afterPath="$PROJECT_DIR$/src/java/com/jolley/Inventory.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/Jolley/java/Item.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/com/Jolley/java/Main.java" afterPath="$PROJECT_DIR$/src/java/com/jolley/Main.java" />
+      <change beforePath="$PROJECT_DIR$/src/java/com/jolley/ItemComparator.java" afterPath="$PROJECT_DIR$/src/java/com/jolley/ItemComparator.java" />
+      <change beforePath="$PROJECT_DIR$/src/java/com/jolley/Main.java" afterPath="$PROJECT_DIR$/src/java/com/jolley/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -31,9 +19,11 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/java/com/jolley/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="51" lean-forward="false" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
-              <folding />
+            <state relative-caret-position="259">
+              <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -41,8 +31,8 @@
       <file leaf-file-name="ItemComparator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/com/jolley/ItemComparator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+            <state relative-caret-position="75">
+              <caret line="5" column="71" lean-forward="false" selection-start-line="5" selection-start-column="71" selection-end-line="5" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -115,8 +105,8 @@
         <option value="$PROJECT_DIR$/src/com/jolley/Main.java" />
         <option value="$PROJECT_DIR$/src/java/items/ItemDateComparator.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/java/com/jolley/ItemComparator.java" />
         <option value="$PROJECT_DIR$/src/java/com/jolley/Item.java" />
+        <option value="$PROJECT_DIR$/src/java/com/jolley/ItemComparator.java" />
         <option value="$PROJECT_DIR$/src/java/com/jolley/Main.java" />
       </list>
     </option>
@@ -359,12 +349,12 @@
       <updated>1512945751975</updated>
       <workItem from="1512945755163" duration="2755000" />
       <workItem from="1512949919043" duration="2638000" />
-      <workItem from="1512966172491" duration="6872000" />
+      <workItem from="1512966172491" duration="7522000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12265000" />
+    <option name="totallyTimeSpent" value="12915000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1311" height="857" extended-state="0" />
@@ -409,14 +399,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/java/com/jolley/Main.java</url>
-          <line>23</line>
-          <properties />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
@@ -426,7 +408,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -478,7 +462,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -552,14 +538,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/com/jolley/ItemComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/com/jolley/Item.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -586,11 +564,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/com/jolley/ItemComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="71" lean-forward="false" selection-start-line="5" selection-start-column="71" selection-end-line="5" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/com/jolley/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="51" lean-forward="false" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
-          <folding />
+        <state relative-caret-position="259">
+          <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
