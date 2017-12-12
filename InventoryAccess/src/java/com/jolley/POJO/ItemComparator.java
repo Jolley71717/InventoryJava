@@ -1,4 +1,4 @@
-package com.jolley;
+package com.jolley.POJO;
 
 import java.util.Comparator;
 

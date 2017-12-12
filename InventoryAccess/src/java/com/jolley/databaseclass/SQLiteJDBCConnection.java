@@ -2,22 +2,27 @@ package com.jolley.databaseclass;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
     /**
      *
-     * @author sqlitetutorial.net
+     * @author Luke Dutton
      */
     public class SQLiteJDBCConnection {
 
+        public static void SQLiteJDBCConnection(){}
+
         /**
-         * Connect to a sample database
+         * Connect to database on computer
          */
+        private static Connection conn = null;
+
         public static void connect() {
-            Connection conn = null;
+
             try {
-                // db parameters
-                String url = "jdbc:sqlite::memory";
+                // db parameters, db should go somewhere accessable on the rpi
+                String url = "jdbc:sqlite:/Users/luke/Documents/iot/InventoryJava/InventoryAccess/src/resources/database/inventory.db";
 
                 // create a connection to the database
                 conn = DriverManager.getConnection(url);
@@ -26,21 +31,34 @@ import java.sql.SQLException;
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
-            } finally {
-                try {
-                    if (conn != null) {
-                        conn.close();
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
             }
         }
-//        /**
-//         * @param args the command line arguments
-//         */
-//        public static void main(String[] args) {
-//            connect();
-//        }
+
+        public static void closeConnection(){
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+            } catch (SQLException ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+
+        public void update(int ItemID, int quantity) {
+            String sql = "UPDATE inventory SET Quantity = ?  "
+                    + "WHERE ItemID = ?";
+
+            try {
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                // set the corresponding param
+                pstmt.setInt(1, quantity);
+                pstmt.setInt(2, ItemID);
+                // update
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 

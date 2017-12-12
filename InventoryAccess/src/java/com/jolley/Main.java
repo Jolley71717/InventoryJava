@@ -3,6 +3,8 @@ package com.jolley;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jolley.POJO.Item;
+import com.jolley.POJO.ItemComparator;
 import com.jolley.databaseclass.SQLiteJDBCConnection;
 
 import java.io.BufferedReader;
@@ -25,18 +27,42 @@ public class Main {
 
         //If it's null, you shouldn't be printing stuff out
         if (jsonData != ""){
-            List<Item> items = getItems(jsonData);
-            for (Item f : items){
-                System.out.println(f.description + " at time " + f.getTimestamp());
+            SQLiteJDBCConnection sqLConnection = new SQLiteJDBCConnection();
+            try {
 
-                //get the connection afterwards
-                SQLiteJDBCConnection.connect();
+                sqLConnection.connect();
 
-                //This is where the sqlite piece takes place
+                List<Item> items = getItems(jsonData);
+                for (Item f : items){
+                    System.out.println(f.description + " at time " + f.getTimestamp() + " with quantity:" + f.quantity);
+                    updateQuantity(f.itemID,f.quantity,sqLConnection);
+
+                    //get the connection afterwards
+                    //This is where the sqlite piece takes place
 
 
-                //After successful insert, remove the information from phant
+                    //After successful insert, remove the information from phant
+
+                    //If there was an update, delete from phant site 2 and then re-add the the new inventory and numbers
+
+                    //both sending and receiving phants will only need itemID, description, and quantity (plus timestamp)
+                }
+
+                //close the connection
+                sqLConnection.closeConnection();
+
+            } catch (Exception ex){
+                //close the connection if an exception occured
+                if(sqLConnection != null){
+                    sqLConnection.closeConnection();
+                }
+            } finally {
+                // Make certain that the connection is closed
+                if(sqLConnection != null){
+                    sqLConnection.closeConnection();
+                }
             }
+
 
 
         }
@@ -74,6 +100,11 @@ public class Main {
             if (reader != null)
                 reader.close();
         }
+    }
+
+    private static void updateQuantity(Integer inventoryID, Integer quantity, SQLiteJDBCConnection conn){
+        //update the sqlite database item quantity
+        conn.update(inventoryID, quantity);
     }
 
 
