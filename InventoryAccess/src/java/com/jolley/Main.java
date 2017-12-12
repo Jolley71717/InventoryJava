@@ -3,6 +3,8 @@ package com.jolley;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jolley.databaseclass.SQLiteJDBCConnection;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -26,6 +28,9 @@ public class Main {
             List<Item> items = getItems(jsonData);
             for (Item f : items){
                 System.out.println(f.description + " at time " + f.getTimestamp());
+
+                //get the connection afterwards
+                SQLiteJDBCConnection.connect();
 
                 //This is where the sqlite piece takes place
 
