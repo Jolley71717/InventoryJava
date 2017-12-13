@@ -16,6 +16,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args)  {
+
+        //set up a while loop here so that this thing constantly goes
         String stringURL = "http://localhost:8080/output/YYVAOe8Qr8F4MreoQVYWUaqK6AA.json";
         String jsonData ="";
 
@@ -42,10 +44,17 @@ public class Main {
 
 
                     //After successful insert, remove the information from phant
+                    PhantProcedures phantProcedures = new PhantProcedures();
+                    phantProcedures.deleteInventoryTrackerStream();
+
 
                     //If there was an update, delete from phant site 2 and then re-add the the new inventory and numbers
-
+                    //----->Create second phant here
                     //both sending and receiving phants will only need itemID, description, and quantity (plus timestamp)
+
+                    //Create another loop that monitors the triggers and sends out a loop based on that.
+
+                    //set a wait/sleep so that it doesn't burn it out
                 }
 
                 //close the connection
