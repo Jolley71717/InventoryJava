@@ -19,7 +19,13 @@ public class Item{
 
     public Item(){}
 
-    public Item(String description, Integer itemID, Integer quantity, Integer triggerLvl, Integer triggered){
+    public Item(Integer itemID, String description, Integer quantity){
+        this.description = description;
+        this.itemID = itemID;
+        this.quantity = quantity;
+    }
+
+    public Item(Integer itemID, String description, Integer quantity, Integer triggerLvl, Integer triggered){
         this.description = description;
         this.itemID = itemID;
         this.quantity = quantity;
@@ -27,7 +33,7 @@ public class Item{
         this.triggerLvl = triggerLvl;
     }
 
-    public Item(String description, Integer itemID, Integer quantity, Timestamp timestamp){
+    public Item(Integer itemID, String description,  Integer quantity, Timestamp timestamp){
     this.description = description;
     this.itemID = itemID;
     this.quantity = quantity;
@@ -44,6 +50,10 @@ public class Item{
 
     public Integer getItemID() {
         return itemID;
+    }
+
+    public void setItemID(Integer itemID){
+        this.itemID = itemID;
     }
 
 
