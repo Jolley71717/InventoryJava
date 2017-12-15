@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4eeb4695-4b79-4ad3-b630-7833e7a1fab2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/java/com/jolley/Main.java" afterPath="$PROJECT_DIR$/src/java/com/jolley/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/java/com/jolley/POJO/Item.java" afterPath="$PROJECT_DIR$/src/java/com/jolley/POJO/Item.java" />
-      <change beforePath="$PROJECT_DIR$/src/java/com/jolley/PhantProcedures.java" afterPath="$PROJECT_DIR$/src/java/com/jolley/PhantProcedures.java" />
-      <change beforePath="$PROJECT_DIR$/src/java/com/jolley/databaseclass/SQLiteJDBCConnection.java" afterPath="$PROJECT_DIR$/src/java/com/jolley/databaseclass/SQLiteJDBCConnection.java" />
-      <change beforePath="$PROJECT_DIR$/src/resources/database/inventory.db" afterPath="$PROJECT_DIR$/src/resources/database/inventory.db" />
-    </list>
+    <list default="true" id="4eeb4695-4b79-4ad3-b630-7833e7a1fab2" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,8 +51,8 @@
       <file leaf-file-name="Main.java" pinned="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/java/com/jolley/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="597">
-              <caret line="61" column="106" lean-forward="false" selection-start-line="61" selection-start-column="106" selection-end-line="61" selection-end-column="106" />
+            <state relative-caret-position="330">
+              <caret line="22" column="40" lean-forward="true" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -233,7 +226,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="y" value="23" />
     <option name="width" value="1277" />
     <option name="height" value="877" />
@@ -478,15 +471,15 @@
       <workItem from="1512966172491" duration="7960000" />
       <workItem from="1513052670768" duration="8733000" />
       <workItem from="1513147015856" duration="1513000" />
-      <workItem from="1513223840023" duration="10806000" />
+      <workItem from="1513223840023" duration="11087000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34405000" />
+    <option name="totallyTimeSpent" value="34686000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1277" height="877" extended-state="0" />
+    <frame x="0" y="23" width="1277" height="877" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -923,8 +916,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/com/jolley/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="61" column="106" lean-forward="false" selection-start-line="61" selection-start-column="106" selection-end-line="61" selection-end-column="106" />
+        <state relative-caret-position="330">
+          <caret line="22" column="40" lean-forward="true" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
