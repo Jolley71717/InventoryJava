@@ -1,6 +1,8 @@
 package com.jolley.POJO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.sql.Timestamp;
 
 public class Item{
@@ -13,9 +15,9 @@ public class Item{
     private Integer triggered = null;
 
     //used both when reading from the database and when reading from the json
-    @JsonProperty("Description")public  String description;
-    @JsonProperty("ItemID") public Integer itemID;
-    @JsonProperty("Quantity") public Integer quantity;
+    @JsonProperty("Description")private   String description;
+    @JsonProperty("ItemID") private Integer itemID;
+    @JsonProperty("Quantity") private Integer quantity;
 
     public Item(){}
 
@@ -38,6 +40,16 @@ public class Item{
     this.itemID = itemID;
     this.quantity = quantity;
     this.timestamp = timestamp;
+    }
+
+    public Boolean shouldITrigger(){
+        return  quantity <= triggerLvl? true:false;
+    }
+
+    public Boolean amIAlreadyTriggered(){
+
+        return triggered > 0 ? true:false;
+
     }
 
     public String getDescription() {
@@ -67,6 +79,26 @@ public class Item{
 
     public Timestamp getTimestamp() {
         return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Integer getTriggerLvl() {
+        return triggerLvl;
+    }
+
+    public void setTriggerLvl(Integer triggerLvl) {
+        this.triggerLvl = triggerLvl;
+    }
+
+    public Integer getTriggered() {
+        return triggered;
+    }
+
+    public void setTriggered(Integer triggered) {
+        this.triggered = triggered;
     }
 
 }

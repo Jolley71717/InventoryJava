@@ -25,8 +25,8 @@ public class Main {
                 //gets inventory items sent from the photon to the raspberry pi
                 List<Item> items = phantProcedures.getRPiItems();
                 for (Item f : items){
-                    System.out.println(f.description + " at time " + f.getTimestamp() + " with quantity:" + f.quantity);
-                    sqLConnection.updateQuantity(f.itemID,f.quantity);
+                    System.out.println(f.getDescription() + " at time " + f.getTimestamp() + " with quantity:" + f.getQuantity());
+                    sqLConnection.updateQuantity(f.getItemID(),f.getQuantity());
                 }
 
                 // after successful insert, remove the information from the pi phant
@@ -35,7 +35,7 @@ public class Main {
                 // Now we need to add the new items to the phant
                 List<Item> newQuantities = sqLConnection.getItemQuantities();
                 for(Item q : newQuantities){
-                    phantProcedures.inputPhant(q.itemID,q.description,q.quantity);
+                    phantProcedures.inputPhant(q.getItemID(),q.getDescription(),q.getQuantity());
                 }
                 //close the connection
                 sqLConnection.closeConnection();
@@ -60,12 +60,14 @@ public class Main {
             List<Item> inventoryItems = sqLiteJDBCConnection.getAllItems();
             for(Item a : inventoryItems){
                 //check to see if the quantity is at or below the trigger. If it is, run the nova commands
+                if(a.shouldITrigger() && !a.amIAlreadyTriggered()) {
+                    System.out.println(a.getDescription() + "  fell bellow the trigger level:" + a.getTriggerLvl()
+                    + "and has a quantity of " + a.getQuantity());
+                }
             }
         }catch (Exception ex){
             System.out.println(ex);
         }
-
-
 
 
         //set a wait/sleep so that it doesn't burn it out
