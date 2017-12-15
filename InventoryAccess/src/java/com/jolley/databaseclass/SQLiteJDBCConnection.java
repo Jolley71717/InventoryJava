@@ -104,8 +104,7 @@ import java.util.List;
             String sql = "UPDATE inventory SET Quantity = ?  "
                     + "WHERE ItemID = ?";
 
-            try {
-                PreparedStatement pstmt = conn.prepareStatement(sql);
+            try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 // set the corresponding param
                 pstmt.setInt(1, quantity);
                 pstmt.setInt(2, ItemID);
