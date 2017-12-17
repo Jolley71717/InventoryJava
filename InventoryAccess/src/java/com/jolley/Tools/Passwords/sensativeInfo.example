@@ -1,5 +1,5 @@
 package com.jolley.Tools.Passwords;
-
+// to use
 public class SensativeInfo {
 
     private String raspberryPiLogin;
@@ -8,21 +8,33 @@ public class SensativeInfo {
     private String sqliteFileLocation;
     private String phantIP;
     private String phantPort;
-    private String phantPublicKey;
-    private String phantPrivateKey;
-    private String phantDeleteKey;
+
+    //RPITracker Stream
+    private String phantStreamRPITrackerPublicKey;
+    private String phantStreamPRITrackerPrivateKey;
+    private String phantStreamRPITrackerDeleteKey;
+
+    //PhotonTracker Stream
+    private String phantStreamPhotonTrackerPublicKey;
+    private String phantStreamPhotonTrackerPrivateKey;
+    private String phantStreamPhotonTrackerDeleteKey;
 
     public SensativeInfo(){
         raspberryPiLogin = "";
         raspberryPiPassword = "";
-        telnetServerAddress = "";
-        sqliteFileLocation = "";
-        phantIP = "";
-        phantPort = "";
-        phantPublicKey = "";
-        phantPrivateKey = "";
-        phantDeleteKey = "";
+        telnetServerAddress = "xxx.xxx.xxx.xxx";
+        sqliteFileLocation = "/usr/xxx";
+        phantIP = "xxx.xxx.xxx.xxx";
+        phantPort = "xxxx";
+        phantStreamRPITrackerPublicKey = "";
+        phantStreamPRITrackerPrivateKey = "";
+        phantStreamRPITrackerDeleteKey = "";
+
+        phantStreamPhotonTrackerPublicKey = "";
+        phantStreamPhotonTrackerPrivateKey = "";
+        phantStreamPhotonTrackerDeleteKey = "";
     }
+
 
     public String getRaspberryPiLogin() {
         return raspberryPiLogin;
@@ -40,16 +52,12 @@ public class SensativeInfo {
         return sqliteFileLocation;
     }
 
-    public String getPhantPublicKey() {
-        return phantPublicKey;
+    public String getPhantStreamRPITrackerPublicKey() {
+        return phantStreamRPITrackerPublicKey;
     }
 
-    public String getPhantPrivateKey() {
-        return phantPrivateKey;
-    }
-
-    public String getPhantDeleteKey() {
-        return phantDeleteKey;
+    public String getPhantStreamRPITrackerDeleteKey() {
+        return phantStreamRPITrackerDeleteKey;
     }
 
     public String getPhantIP() {
@@ -60,4 +68,19 @@ public class SensativeInfo {
         return phantPort;
     }
 
+    public String getPhantStreamPRITrackerPrivateKey() {
+        return phantStreamPRITrackerPrivateKey;
+    }
+
+    public String getPhantStreamPhotonTrackerPublicKey() {
+        return phantStreamPhotonTrackerPublicKey;
+    }
+
+    public String getPhantStreamPhotonTrackerPrivateKey() {
+        return phantStreamPhotonTrackerPrivateKey;
+    }
+
+    public String getPhantStreamPhotonTrackerDeleteKey() {
+        return phantStreamPhotonTrackerDeleteKey;
+    }
 }
