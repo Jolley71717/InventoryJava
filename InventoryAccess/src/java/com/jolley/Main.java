@@ -1,7 +1,9 @@
 package com.jolley;
 
-import com.jolley.POJO.Item;
-import com.jolley.databaseclass.SQLiteJDBCConnection;
+import com.jolley.Tools.Hologram.Hologram;
+import com.jolley.Tools.POJO.Item;
+import com.jolley.Tools.databaseclass.SQLiteJDBCConnection;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -9,66 +11,97 @@ public class Main {
 
     public static void main(String[] args)  {
 
-        PhantProcedures phantProcedures = new PhantProcedures();
-        //get the stream of information
-        phantProcedures.getRaspberryPiInventoryTrackerStream();
-
         //If the inventory update is null, you shouldn't be printing stuff out
+        Hologram hologram = new Hologram();
+        hologram.runHologramCode();
 
-        if (phantProcedures.getPiInventoryJsonData() != ""){
+        Boolean ready = false;
+        if(ready){
+            //get the stream of information
+            PhantProcedures phantProcedures = new PhantProcedures();
+            phantProcedures.getRaspberryPiInventoryTrackerStream();
 
-            SQLiteJDBCConnection sqLConnection = new SQLiteJDBCConnection();
-            try {
+            if (phantProcedures.getPiInventoryJsonData() != ""){
 
-                sqLConnection.connect();
+                SQLiteJDBCConnection sqLConnection = new SQLiteJDBCConnection();
+                try {
 
-                //gets inventory items sent from the photon to the raspberry pi
-                List<Item> items = phantProcedures.getRPiItems();
-                for (Item f : items){
-                    System.out.println(f.getDescription() + " at time " + f.getTimestamp() + " with quantity:" + f.getQuantity());
-                    sqLConnection.updateQuantity(f.getItemID(),f.getQuantity());
-                }
+                    sqLConnection.connect();
 
-                // after successful insert, remove the information from the pi phant
-                phantProcedures.deleteRPiTrackerStream();
+                    //gets inventory items sent from the photon to the raspberry pi
+                    List<Item> items = phantProcedures.getRPiItems();
+                    for (Item f : items){
+                        System.out.println(f.getDescription() + " at time " + f.getTimestamp() + " with quantity:" + f.getQuantity());
+                        sqLConnection.updateQuantity(f.getItemID(),f.getQuantity());
+                    }
 
-                // Now we need to add the new items to the phant
-                List<Item> newQuantities = sqLConnection.getItemQuantities();
-                for(Item q : newQuantities){
-                    phantProcedures.inputPhant(q.getItemID(),q.getDescription(),q.getQuantity());
-                }
-                //close the connection
-                sqLConnection.closeConnection();
+                    // after successful insert, remove the information from the pi phant
+                    phantProcedures.deleteRPiTrackerStream();
 
-            } catch (Exception ex){
-                //close the connection if an exception occured
-                if(sqLConnection != null){
+                    // Now we need to add the new items to the phant
+                    List<Item> newQuantities = sqLConnection.getItemQuantities();
+                    for(Item q : newQuantities){
+                        phantProcedures.inputPhantStreamPhoton(q.getItemID(),q.getDescription(),q.getQuantity());
+                    }
+                    //close the connection
                     sqLConnection.closeConnection();
-                }
-            } finally {
-                // Make certain that the connection is closed
-                if(sqLConnection != null){
-                    sqLConnection.closeConnection();
+
+                } catch (Exception ex){
+                    //close the connection if an exception occured
+                    if(sqLConnection != null){
+                        sqLConnection.closeConnection();
+                    }
+                } finally {
+                    // Make certain that the connection is closed
+                    if(sqLConnection != null){
+                        sqLConnection.closeConnection();
+                    }
                 }
             }
-        }
 
-        // Monitor the level of the trigger
-        try{
-            SQLiteJDBCConnection sqLiteJDBCConnection = new SQLiteJDBCConnection();
 
-            List<Item> inventoryItems = sqLiteJDBCConnection.getAllItems();
-            for(Item a : inventoryItems){
-                //check to see if the quantity is at or below the trigger. If it is, run the nova commands
-                if(a.shouldITrigger() && !a.amIAlreadyTriggered()) {
-                    System.out.println(a.getDescription() + "  fell bellow the trigger level:" + a.getTriggerLvl()
-                    + "and has a quantity of " + a.getQuantity());
+            // Monitor the level of the trigger
+            try{
+                SQLiteJDBCConnection sqLiteJDBCConnection = new SQLiteJDBCConnection();
+
+                List<Item> inventoryItems = sqLiteJDBCConnection.getAllItems();
+                for(Item a : inventoryItems){
+                    //check to see if the quantity is at or below the trigger. If it is, run the nova commands
+                    if(a.shouldITrigger() && !a.amIAlreadyTriggered()) {
+
+//                    Runtime rt = Runtime.getRuntime();
+//
+//                    String[] commands = {"telnet 192.168.1","pi","EUKyaAR7", "sudo hologram modem location"};
+//                    Process pr = rt.exec(commands);
+//                    //get wait result here
+//                    BufferedReader stdInput = new BufferedReader(new InputStreamReader((pr.getInputStream())));
+//                    BufferedReader stdError = new BufferedReader(new InputStreamReader(pr.getErrorStream()));
+//                    String s = null;
+//
+//
+//                    // read the output from the command
+//                    System.out.println("Here is the standard output of the command:\n");
+//                    while ((s = stdInput.readLine()) != null) {
+//                        System.out.println(s);
+//                    }
+//
+//                    // read any errors from the attempted command
+//                    System.out.println("Here is the standard error of the command (if any):\n");
+//                    while ((s = stdError.readLine()) != null) {
+//                        System.out.println(s);
+//                    }
+//
+//                    // hologram network disconnect
+
+                        System.out.println(a.getDescription() + "  fell bellow the trigger level:" + a.getTriggerLvl()
+                                + "and has a quantity of " + a.getQuantity());
+                    }
                 }
+            }catch (Exception ex){
+                System.out.println(ex);
             }
-        }catch (Exception ex){
-            System.out.println(ex);
-        }
 
+        }
 
         //set a wait/sleep so that it doesn't burn it out
 

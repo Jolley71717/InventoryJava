@@ -3,8 +3,9 @@ package com.jolley;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jolley.POJO.Item;
-import com.jolley.POJO.ItemComparator;
+import com.jolley.Tools.POJO.Item;
+import com.jolley.Tools.POJO.ItemComparator;
+import com.jolley.Tools.Passwords.SensativeInfo;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,18 +17,23 @@ import java.util.List;
 
 public class PhantProcedures {
 
+    //bring in the password and login information
+    private SensativeInfo sensativeInfo = new SensativeInfo();
+
     private String photonInventoryJsonData;
     private String piInventoryJsonData;
 
 
     public void deleteRPiTrackerStream()  {
 
-            String streamURL = "http://192.168.1.107:8080/streams/4Wegvpk190IlE1ErBAKOC2eYKX6/delete/yQlPV2novLIPvgveO3JRsxOrYgp";
+            String streamURL = "http://" + sensativeInfo.getPhantIP() +":" + sensativeInfo.getPhantPort() + "/streams/"+
+                    sensativeInfo.getPhantStreamRPITrackerPublicKey() +"/delete/"+ sensativeInfo.getPhantStreamRPITrackerDeleteKey();
         deleteTrackerStream(streamURL);
     }
     public void deletePhotonTrackerStream()  {
 
-            String streamURL = "http://192.168.1.107:8080/streams/4l4DVeWZm8UlE1ErBAKOC2eYKX6/delete/yEB4glQX69IPvgveO3JRsxOrYgp";
+            String streamURL = "http://" + sensativeInfo.getPhantIP() +":" + sensativeInfo.getPhantPort() +
+                    "/streams/"+ sensativeInfo.getPhantStreamPhotonTrackerPublicKey() + "/delete/" + sensativeInfo.getPhantStreamPhotonTrackerDeleteKey();
         deleteTrackerStream(streamURL);
     }
 
@@ -57,7 +63,9 @@ public class PhantProcedures {
 
     public void getRaspberryPiInventoryTrackerStream(){
         //set up a while loop here so that this thing constantly goes
-        String stringURL = "http://192.168.1.107:8080/output/4Wegvpk190IlE1ErBAKOC2eYKX6.json";
+        String stringURL = "http://" + sensativeInfo.getPhantIP() + ":" + sensativeInfo.getPhantPort() + "/output/"
+                +sensativeInfo.getPhantStreamRPITrackerPublicKey()
+                +".json";
 
         try{
             piInventoryJsonData = readUrl(stringURL);
@@ -68,7 +76,8 @@ public class PhantProcedures {
 
     public void getPhotonInventoryTrackerStream(){
         //set up a while loop here so that this thing constantly goes
-        String stringURL = "http://192.168.1.107:8080/output/4l4DVeWZm8UlE1ErBAKOC2eYKX6.json";
+        String stringURL = "http://" + sensativeInfo.getPhantIP() +":" + sensativeInfo.getPhantPort()
+                + "/output/"+ sensativeInfo.getPhantStreamPhotonTrackerPublicKey()+".json";
 
         try{
             photonInventoryJsonData = readUrl(stringURL);
@@ -123,9 +132,10 @@ public class PhantProcedures {
     //push updates to the listening phant
 
 
-    public void inputPhant(Integer itemID, String description, Integer quantity){
-        String phantInputURL = "http://192.168.1.107:8080/input/4Wegvpk190IlE1ErBAKOC2eYKX6?" +
-                "private_key=q5jX32a7LeCl3736PGpwCwARXjQ";
+    public void inputPhantStreamPhoton(Integer itemID, String description, Integer quantity){
+        String phantInputURL = "http://" + sensativeInfo.getPhantIP() +":" + sensativeInfo.getPhantPort() + "/input/"
+                + sensativeInfo.getPhantStreamPhotonTrackerPublicKey()+"?" +
+                "private_key=" + sensativeInfo.getPhantStreamPhotonTrackerPrivateKey();
         phantInputURL = phantInputURL + "&ItemID=" + itemID.toString() + "&Description="
                 + description + "&Quantity=" + quantity.toString();
         String result = "";

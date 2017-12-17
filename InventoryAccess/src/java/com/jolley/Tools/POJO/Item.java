@@ -1,7 +1,6 @@
-package com.jolley.POJO;
+package com.jolley.Tools.POJO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.sql.Timestamp;
 

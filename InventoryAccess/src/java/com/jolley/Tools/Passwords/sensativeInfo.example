@@ -1,0 +1,63 @@
+package com.jolley.Tools.Passwords;
+
+public class SensativeInfo {
+
+    private String raspberryPiLogin;
+    private String raspberryPiPassword;
+    private String telnetServerAddress;
+    private String sqliteFileLocation;
+    private String phantIP;
+    private String phantPort;
+    private String phantPublicKey;
+    private String phantPrivateKey;
+    private String phantDeleteKey;
+
+    public SensativeInfo(){
+        raspberryPiLogin = "";
+        raspberryPiPassword = "";
+        telnetServerAddress = "";
+        sqliteFileLocation = "";
+        phantIP = "";
+        phantPort = "";
+        phantPublicKey = "";
+        phantPrivateKey = "";
+        phantDeleteKey = "";
+    }
+
+    public String getRaspberryPiLogin() {
+        return raspberryPiLogin;
+    }
+
+    public String getRaspberryPiPassword() {
+        return raspberryPiPassword;
+    }
+
+    public String getTelnetServerAddress() {
+        return telnetServerAddress;
+    }
+
+    public String getSqliteFileLocation() {
+        return sqliteFileLocation;
+    }
+
+    public String getPhantPublicKey() {
+        return phantPublicKey;
+    }
+
+    public String getPhantPrivateKey() {
+        return phantPrivateKey;
+    }
+
+    public String getPhantDeleteKey() {
+        return phantDeleteKey;
+    }
+
+    public String getPhantIP() {
+        return phantIP;
+    }
+
+    public String getPhantPort() {
+        return phantPort;
+    }
+
+}

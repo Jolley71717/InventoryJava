@@ -1,6 +1,7 @@
-package com.jolley.databaseclass;
+package com.jolley.Tools.databaseclass;
 
-import com.jolley.POJO.Item;
+import com.jolley.Tools.POJO.Item;
+import com.jolley.Tools.Passwords.SensativeInfo;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,6 +13,9 @@ import java.util.List;
      */
     public class SQLiteJDBCConnection {
 
+        //bring in the password and login information
+        private SensativeInfo sensativeInfo = new SensativeInfo();
+
         public  void SQLiteJDBCConnection(){}
 
         /**
@@ -21,9 +25,10 @@ import java.util.List;
 
         public  void connect() {
 
+
             try {
                 // db parameters, db should go somewhere accessable on the rpi
-                String url = "jdbc:sqlite:/Users/luke/Documents/iot/InventoryJava/InventoryAccess/src/resources/database/inventory.db";
+                String url = "jdbc:sqlite:" + sensativeInfo.getSqliteFileLocation();
 
                 // create a connection to the database
                 conn = DriverManager.getConnection(url);
