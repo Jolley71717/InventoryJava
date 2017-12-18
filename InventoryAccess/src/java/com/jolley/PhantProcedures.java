@@ -24,20 +24,22 @@ public class PhantProcedures {
     private String piInventoryJsonData;
 
 
-    public void deleteRPiTrackerStream()  {
-
-            String streamURL = "http://" + sensativeInfo.getPhantIP() +":" + sensativeInfo.getPhantPort() + "/streams/"+
-                    sensativeInfo.getPhantStreamRPITrackerPublicKey() +"/delete/"+ sensativeInfo.getPhantStreamRPITrackerDeleteKey();
-        deleteTrackerStream(streamURL);
+    public void clearRPiTrackerStream()  {
+// http://data.sparkfun.com/input/PUBLIC_KEY/clear?private_key=PRIVATE_KEY
+            String streamURL = "http://" + sensativeInfo.getPhantIP() +":" + sensativeInfo.getPhantPort() + "/input/"+
+                    sensativeInfo.getPhantStreamRPITrackerPublicKey() +"/clear?private_key="
+                    + sensativeInfo.getPhantStreamPRITrackerPrivateKey();
+        clearTrackerStream(streamURL);
     }
-    public void deletePhotonTrackerStream()  {
-
+    public void clearPhotonTrackerStream()  {
+// http://data.sparkfun.com/input/PUBLIC_KEY/clear?private_key=PRIVATE_KEY
             String streamURL = "http://" + sensativeInfo.getPhantIP() +":" + sensativeInfo.getPhantPort() +
-                    "/streams/"+ sensativeInfo.getPhantStreamPhotonTrackerPublicKey() + "/delete/" + sensativeInfo.getPhantStreamPhotonTrackerDeleteKey();
-        deleteTrackerStream(streamURL);
+                    "/input/"+ sensativeInfo.getPhantStreamPhotonTrackerPublicKey()
+                    + "/clear?" + sensativeInfo.getPhantStreamPhotonTrackerPrivateKey();
+        clearTrackerStream(streamURL);
     }
 
-    private void deleteTrackerStream(String streamUrl){
+    private void clearTrackerStream(String streamUrl){
         try{
             URL url = new URL(streamUrl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
