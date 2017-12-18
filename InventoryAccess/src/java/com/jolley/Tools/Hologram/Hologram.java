@@ -13,7 +13,10 @@ public class Hologram {
 
     public Hologram(){}
 
-    public void runHologramCode(){
+    public boolean runHologramCode(String inventoryItem, String inventoryItemQuantity, String inventoryItemTrigger){
+
+        boolean returnStatus = false;
+        String inventoryMessage = "Item " + inventoryItem + " has fallen to: " + inventoryItemQuantity  +" below its trigger: " + inventoryItemTrigger;
 
 
         //has to be run from telnet when I'm using on the mac
@@ -21,13 +24,17 @@ public class Hologram {
         try {
             AutomatedTelnetClient telnet = new AutomatedTelnetClient(sensativeInfo.getPhantIP(),
                     sensativeInfo.getRaspberryPiLogin(), sensativeInfo.getRaspberryPiPassword());
-            String resultString = telnet.sendCommandReadResult("sudo hologram send --cloud --authtype 'totp' 'my test message' ", "}");
+            String resultString = telnet.sendCommandReadResult("sudo hologram send --cloud --authtype 'totp' '"
+                    + inventoryMessage+"' ", "~$");
             System.out.println(resultString);
+            returnStatus = !resultString.isEmpty() && resultString.contains("sent successfully");
             telnet.disconnect();
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+
+        return returnStatus;
         /*
 
         try{

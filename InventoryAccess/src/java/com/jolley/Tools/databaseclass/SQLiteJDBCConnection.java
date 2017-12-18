@@ -106,18 +106,29 @@ import java.util.List;
         }
 
         private void update(int ItemID, int quantity) {
-            String sql = "UPDATE inventory SET Quantity = ?  "
-                    + "WHERE ItemID = ?";
+            updateSQL(ItemID, quantity, "UPDATE inventory SET Quantity = ?  " + "WHERE ItemID = ?");
+        }
 
-            try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                // set the corresponding param
-                pstmt.setInt(1, quantity);
-                pstmt.setInt(2, ItemID);
-                // update
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+        private void updateTriggered(Integer itemID, Integer triggered){
+            updateSQL(itemID, triggered, "UPDATE inventory SET Triggered = ?  " + "WHERE ItemID = ?");
+        }
+
+    private void updateSQL(Integer itemID, Integer fieldValue, String sql) {
+        try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            // set the corresponding param
+            pstmt.setInt(1, fieldValue);
+            pstmt.setInt(2, itemID);
+            // update
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateTriggeredValue(Integer inventoryID, boolean triggered){
+            Integer triggeredInteger = triggered ? 1:0;
+            updateTriggered(inventoryID,triggeredInteger);
+
         }
 
         public void updateQuantity(Integer inventoryID, Integer quantity){

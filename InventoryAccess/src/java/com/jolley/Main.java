@@ -11,9 +11,7 @@ public class Main {
 
     public static void main(String[] args)  {
 
-        //If the inventory update is null, you shouldn't be printing stuff out
-        Hologram hologram = new Hologram();
-        hologram.runHologramCode();
+
 
         Boolean ready = false;
         if(ready){
@@ -31,7 +29,8 @@ public class Main {
                     //gets inventory items sent from the photon to the raspberry pi
                     List<Item> items = phantProcedures.getRPiItems();
                     for (Item f : items){
-                        System.out.println(f.getDescription() + " at time " + f.getTimestamp() + " with quantity:" + f.getQuantity());
+                        System.out.println(f.getDescription() + " at time " + f.getTimestamp()
+                                + " with quantity:" + f.getQuantity());
                         sqLConnection.updateQuantity(f.getItemID(),f.getQuantity());
                     }
 
@@ -67,7 +66,18 @@ public class Main {
                 List<Item> inventoryItems = sqLiteJDBCConnection.getAllItems();
                 for(Item a : inventoryItems){
                     //check to see if the quantity is at or below the trigger. If it is, run the nova commands
+
                     if(a.shouldITrigger() && !a.amIAlreadyTriggered()) {
+
+                        //If the inventory update is null, you shouldn't be printing stuff out
+                        Hologram hologram = new Hologram();
+                        boolean messageSuccess =  hologram.runHologramCode(a.getDescription()
+                                ,a.getQuantity().toString(),a.getTriggerLvl().toString());
+
+                        if (messageSuccess){
+                            //run the sql code to update the already triggered
+                            sqLiteJDBCConnection.updateTriggeredValue(a.getItemID(),true);
+                        }
 
 //                    Runtime rt = Runtime.getRuntime();
 //
@@ -91,10 +101,12 @@ public class Main {
 //                        System.out.println(s);
 //                    }
 //
-//                    // hologram network disconnect
-
-                        System.out.println(a.getDescription() + "  fell bellow the trigger level:" + a.getTriggerLvl()
-                                + "and has a quantity of " + a.getQuantity());
+                        System.out.println(a.getDescription() + " fell bellow the trigger level: "
+                                + a.getTriggerLvl().toString() + " and has a quantity of " + a.getQuantity().toString());
+                    } else if (!a.shouldITrigger() && a.amIAlreadyTriggered()){
+                        // if the item has returned to above it's trigger levels and it has already been triggered
+                        // we need to reset the triggered back to zero
+                        sqLiteJDBCConnection.updateTriggeredValue(a.getItemID(),false);
                     }
                 }
             }catch (Exception ex){
