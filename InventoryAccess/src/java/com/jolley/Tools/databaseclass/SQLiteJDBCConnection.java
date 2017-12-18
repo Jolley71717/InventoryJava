@@ -87,9 +87,9 @@ import java.util.List;
             List<Item> listOfItems = new ArrayList<>();
             String sql = "SELECT ItemID, Description, Quantity,TriggerLvl, Triggered FROM INVENTORY";
 
-            try (Statement stmt  = conn.createStatement();
-                 ResultSet rs    = stmt.executeQuery(sql)){
-
+            try {
+                Statement stmt  = conn.createStatement();
+                ResultSet rs    = stmt.executeQuery(sql);
                 // loop through the result set
                 while (rs.next()) {
                     Item currentItem = new Item(rs.getInt("ItemID"),rs.getString("Description")

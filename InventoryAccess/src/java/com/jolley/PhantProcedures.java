@@ -35,7 +35,7 @@ public class PhantProcedures {
 // http://data.sparkfun.com/input/PUBLIC_KEY/clear?private_key=PRIVATE_KEY
             String streamURL = "http://" + sensativeInfo.getPhantIP() +":" + sensativeInfo.getPhantPort() +
                     "/input/"+ sensativeInfo.getPhantStreamPhotonTrackerPublicKey()
-                    + "/clear?" + sensativeInfo.getPhantStreamPhotonTrackerPrivateKey();
+                    + "/clear?private_key=" + sensativeInfo.getPhantStreamPhotonTrackerPrivateKey();
         clearTrackerStream(streamURL);
     }
 

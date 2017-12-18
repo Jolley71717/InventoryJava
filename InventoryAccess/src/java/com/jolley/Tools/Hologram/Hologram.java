@@ -22,7 +22,7 @@ public class Hologram {
         //has to be run from telnet when I'm using on the mac
         //Otherwise run natively on the pi
         try {
-            AutomatedTelnetClient telnet = new AutomatedTelnetClient(sensativeInfo.getPhantIP(),
+            AutomatedTelnetClient telnet = new AutomatedTelnetClient(sensativeInfo.getRaspberryPiServer(),
                     sensativeInfo.getRaspberryPiLogin(), sensativeInfo.getRaspberryPiPassword());
             String resultString = telnet.sendCommandReadResult("sudo hologram send --cloud --authtype 'totp' '"
                     + inventoryMessage+"' ", "~$");
