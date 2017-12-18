@@ -71,7 +71,7 @@ public class Main {
 
 //                    Runtime rt = Runtime.getRuntime();
 //
-//                    String[] commands = {"telnet 192.168.1","pi","EUKyaAR7", "sudo hologram modem location"};
+
 //                    Process pr = rt.exec(commands);
 //                    //get wait result here
 //                    BufferedReader stdInput = new BufferedReader(new InputStreamReader((pr.getInputStream())));

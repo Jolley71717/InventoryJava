@@ -1,6 +1,7 @@
 package com.jolley.Tools.Hologram;
 
 import com.jolley.Tools.Passwords.SensativeInfo;
+import com.jolley.Tools.Telnet.AutomatedTelnetClient;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,6 +14,21 @@ public class Hologram {
     public Hologram(){}
 
     public void runHologramCode(){
+
+
+        //has to be run from telnet when I'm using on the mac
+        //Otherwise run natively on the pi
+        try {
+            AutomatedTelnetClient telnet = new AutomatedTelnetClient(sensativeInfo.getPhantIP(),
+                    sensativeInfo.getRaspberryPiLogin(), sensativeInfo.getRaspberryPiPassword());
+            String resultString = telnet.sendCommandReadResult("sudo hologram send --cloud --authtype 'totp' 'my test message' ", "}");
+            System.out.println(resultString);
+            telnet.disconnect();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        /*
 
         try{
             Runtime rt = Runtime.getRuntime();
@@ -50,9 +66,12 @@ public class Hologram {
         }catch (Exception ex){
             System.out.println(ex);
         }
+        */
 
     }
 
+
+    // I will use these in the java app version
     private String createBad(String[] commands){
         StringBuffer output = new StringBuffer();
 

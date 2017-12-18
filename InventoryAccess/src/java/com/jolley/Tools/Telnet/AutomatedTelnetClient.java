@@ -9,24 +9,24 @@ public class AutomatedTelnetClient {
     private TelnetClient telnet = new TelnetClient();
     private InputStream in;
     private PrintStream out;
-    private String prompt = "#";
+    private String prompt = "~$";
 
     public AutomatedTelnetClient(String server, String user, String password) {
         try {
-// Connect to the specified server
+            // Connect to the specified server
             telnet.connect(server, 23);
 
-// Get input and output stream references
+            // Get input and output stream references
             in = telnet.getInputStream();
             out = new PrintStream(telnet.getOutputStream());
 
-// Log the user on
+            // Log the user on
             readUntil("login: ");
             write(user);
             readUntil("Password: ");
             write(password);
 
-// Advance to a prompt
+            // Advance to a prompt
             readUntil(prompt + " ");
         }
         catch (Exception e) {
@@ -45,6 +45,13 @@ public class AutomatedTelnetClient {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String sendCommandReadResult(String command, String endsWith){
+        write(command);
+        String stringBetween = readUntil(endsWith);
+
+        return stringBetween.isEmpty() ? "": stringBetween;
     }
 
     public String readUntil(String pattern) {
@@ -84,6 +91,7 @@ public class AutomatedTelnetClient {
     public String sendCommand(String command) {
         try {
             write(command);
+
             return readUntil(prompt + " ");
         }
         catch (Exception e) {
@@ -94,18 +102,6 @@ public class AutomatedTelnetClient {
 
     public void disconnect() {
         try {
-            telnet.disconnect();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) {
-        try {
-            AutomatedTelnetClient telnet = new AutomatedTelnetClient("127.0.0.1",
-"username", "password");
-            telnet.sendCommand("ps -ef ");
             telnet.disconnect();
         }
         catch (Exception e) {
