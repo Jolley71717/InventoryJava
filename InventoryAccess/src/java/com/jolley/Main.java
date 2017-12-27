@@ -13,21 +13,19 @@ public class Main {
     static SQLiteJDBCConnection sqLConnection = new SQLiteJDBCConnection();
 
     public static void main(String[] args) {
+        // setting up the initial sql connection
+        sqLConnection.connect();
 
         while (true) {
             //get the stream of information
             PhantProcedures phantProcedures = new PhantProcedures();
-            phantProcedures.getRaspberryPiInventoryTrackerStream();
-            String testingjson = phantProcedures.getPiInventoryJsonData();
-
-
 
             if (phantProcedures.getPiInventoryJsonData() != null) {
 
 
                 try {
 
-                    sqLConnection.connect();
+
 
                     //gets inventory items sent from the photon to the raspberry pi
                     List<Item> items = phantProcedures.getRPiItems();
